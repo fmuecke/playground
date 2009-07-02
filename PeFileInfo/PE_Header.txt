@@ -1,0 +1,136 @@
++-------------------+
+| DOS-stub          |
++-------------------+
+| file-header       |
++-------------------+
+| optional header   |
+|- - - - - - - - - -|
+|                   |
+| data directories  |
+|                   |
++-------------------+
+|                   |
+| section headers   |
+|                   |
++-------------------+
+|                   |
+| section 1         |
+|                   |
++-------------------+
+|                   |
+| section 2         |
+|                   |
++-------------------+
+|                   |
+| ...               |
+|                   |
++-------------------+
+|                   |
+| section n         |
+|                   |
++-------------------+
+
+
+DOS_SIGNATURE = 0x4D5A		// "MZ"
+NT_SIGNATURE = 0x50450000	// "PE\0\0"
+
+
+DOS HEADER
+===================
+Address		Bytes   What
+--------	------	-----
+0x00		2		Magic number
+0x02		2		Bytes on last page of file
+0x04		2		Pages in file
+0x06		2		Relocations
+0x08		2		Size of header in paragraphs
+0x0a		2		Minimum extra paragraphs needed
+0x0c		2		Maximum extra paragraphs needed
+0x0e		2		Initial (relative) SS value
+0x10    	2		Initial SP value
+0x12    	2		Checksum
+0x14    	2		Initial IP value
+0x16    	2		Initial (relative) CS value
+0x18    	2		File address of relocation table
+0x1a    	2		Overlay number
+0x1c    	2*4		4 Reserved words
+0x24		2		OEM identifier (for e_oeminfo)
+0x26		2		OEM information
+0x28		2*10	10 Reserved words
+0x3c		4		File address of new exe header (=peoffset)
+-----------------------
+			64
+
+FILE_HEADER
+============
+Address		Bytes   What
+--------	------	-----
+		    2		Machine
+    		2		NumberOfSections
+    		4 		TimeDateStamp
+    		4   	PointerToSymbolTable
+    		4		NumberOfSymbols
+    		2		SizeOfOptionalHeader
+    		2		Characteristics
+
+OPTIONAL_HEADER
+================
+Address		Bytes   What
+--------	------	-----
+			2		Magic
+			1		MajorLinkerVersion
+			1		MinorLinkerVersion
+			4		SizeOfCode
+			4		SizeOfInitializedData
+			4		SizeOfUninitializedData
+			4		AddressOfEntryPoint
+			4		BaseOfCode
+			4		BaseOfData
+NT additional fields:
+			4		ImageBase
+			4		SectionAlignment
+			4		FileAlignment
+			2		MajorOperatingSystemVersion
+			2		MinorOperatingSystemVersion
+			2		MajorImageVersion
+			2		MinorImageVersion
+			2		MajorSubsystemVersion
+			2		MinorSubsystemVersion
+			4		Win32VersionValue
+			4		SizeOfImage
+			4		SizeOfHeaders
+			4		CheckSum
+			2		Subsystem
+			2		DllCharacteristics
+			4		SizeOfStackReserve
+			4		SizeOfStackCommit
+			4		SizeOfHeapReserve
+			4		SizeOfHeapCommit
+			4		LoaderFlags
+			4		NumberOfRvaAndSizes
+			8x16 	DataDirectory[16];
+
+DATA_DIRECTORY
+===============
+Address		Bytes   What
+--------	------	-----
+			4		VirtualAddress
+    		4		Size
+    		
+
+SECTION_HEADER
+===============
+Follows immediately after the optional header.
+
+Address		Bytes   What
+--------	------	-----
+    		1x8    	Name[8];
+    		4		PhysicalAddress or VirtualSize (union)
+			4   	VirtualAddress;
+    		4   	SizeOfRawData;
+    		4   	PointerToRawData;
+    		4   	PointerToRelocations;
+    		4   	PointerToLinenumbers;
+			2		NumberOfRelocations;
+    		2		NumberOfLinenumbers;
+    		4		Characteristics;
