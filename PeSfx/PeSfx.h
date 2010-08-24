@@ -1,6 +1,7 @@
 //-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 // Filename: PeSfx.h
 // Created:  2009/05/10 22:16
+// Modified: 2010/08/25 0:27 
 // Author:   Florian Muecke
 //	
 // Description: 
@@ -14,12 +15,17 @@
 
 #define VERSION					"0.1"
 
-#define INTERNAL_ERROR			1
-#define CREATE_FILE_ERROR		2
-#define MEM_ALLOC_ERROR			3
-#define CREATE_CAB_FILE_ERROR	4
-#define CAB_OPEN_ERROR			5
-#define DLL_LOAD_ERROR			6
+enum 
+{ 
+	eINTERNAL_ERROR = 1,
+	eOPEN_FILE_ERROR,
+	eCREATE_FILE_ERROR,
+	eMEM_ALLOC_ERROR,
+	eCREATE_CAB_FILE_ERROR,
+	eCAB_OPEN_ERROR,
+	eDLL_LOAD_ERROR
+};
+
 //#define SPFILENOTIFY_FILEINCABINET	0x11
 
 //#define FIXED_FILESIZE					13824 // bytes

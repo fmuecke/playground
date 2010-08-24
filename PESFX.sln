@@ -1,0 +1,29 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "PeSfx_stub", "PeSfx\PESFX.vcxproj", "{B0FBB93B-76C5-43ED-B47C-5A1F16A78CDC}"
+	ProjectSection(ProjectDependencies) = postProject
+		{3F242DCC-F19C-442E-B4F6-3E52A46675FB} = {3F242DCC-F19C-442E-B4F6-3E52A46675FB}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "FMlib", "FMlib\FMlib.vcxproj", "{3F242DCC-F19C-442E-B4F6-3E52A46675FB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B0FBB93B-76C5-43ED-B47C-5A1F16A78CDC}.Debug|Win32.ActiveCfg = Debug|Win32
+		{B0FBB93B-76C5-43ED-B47C-5A1F16A78CDC}.Debug|Win32.Build.0 = Debug|Win32
+		{B0FBB93B-76C5-43ED-B47C-5A1F16A78CDC}.Release|Win32.ActiveCfg = Release|Win32
+		{B0FBB93B-76C5-43ED-B47C-5A1F16A78CDC}.Release|Win32.Build.0 = Release|Win32
+		{3F242DCC-F19C-442E-B4F6-3E52A46675FB}.Debug|Win32.ActiveCfg = Debug|Win32
+		{3F242DCC-F19C-442E-B4F6-3E52A46675FB}.Debug|Win32.Build.0 = Debug|Win32
+		{3F242DCC-F19C-442E-B4F6-3E52A46675FB}.Release|Win32.ActiveCfg = Release|Win32
+		{3F242DCC-F19C-442E-B4F6-3E52A46675FB}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

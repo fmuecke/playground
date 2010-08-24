@@ -2,6 +2,7 @@
 // Filename: pesfx.cpp
 // Created:  2009/05/09 13:20
 // Author:   Florian Muecke
+// Modified: 2010/08/25 0:27 (fm)
 //	
 // Description: 
 //              Original idea by Andrew Klinkhamer (MASM32 stubinstall).
@@ -27,7 +28,8 @@
 const char* caption = "PeSfx";
 const char* szDirFormat = "~psr%x";
 const char* szInternalError = "No data found!";
-const char* szFileCreationError = "Unable to create temporary file(s)!";
+const char* szFileOpenError = "Unable to open file!";
+const char* szFileCreateError = "Unable to create temporary file(s)!";
 const char* szMemAllocError = "Unable to allocate memory!";
 const char* szCabOpenError = "Unable to open compressed file(s)!";
 const char* szDllLoadError = "Error starting process!";
@@ -35,9 +37,9 @@ const char* szTmpDirError = "Error creating temporary directory. Please check yo
 
 // uninitialized data
 //align 4
-char szExePath[MAX_PATH];
-char szPath[MAX_PATH];
-char szSubDirName[sizeof(szDirFormat)+6+1]; //enough space for 8 hex chars + terminating 0 
+char szExePath[MAX_PATH] = {0};
+char szPath[MAX_PATH] = {0};
+char szSubDirName[sizeof(szDirFormat)+6+1] = {0}; //enough space for 8 hex chars + terminating 0 
 HANDLE hSfxFile = NULL;
 HANDLE hCabFile = NULL;
 LPVOID pMem = NULL;
@@ -76,8 +78,8 @@ void main()
 	if( hSfxFile == INVALID_HANDLE_VALUE )
 	{
 		hSfxFile = NULL;
-		FM::MbxError( szFileCreationError, caption );
-		cleanUpAndExit( CREATE_FILE_ERROR );
+		FM::MbxError( szFileOpenError, caption );
+		cleanUpAndExit( eOPEN_FILE_ERROR );
 	}
 
 	// Get the size of this stub plus the appended cab file
@@ -87,14 +89,14 @@ void main()
 	if( fileSize <= 0 )
 	{
 		FM::MbxError( szInternalError, caption );
-		cleanUpAndExit( INTERNAL_ERROR );
+		cleanUpAndExit( eINTERNAL_ERROR );
 	}
 
 	pMem = ::VirtualAlloc( 0, fileSize+1, MEM_COMMIT, PAGE_READWRITE );
 	if( pMem == NULL )
 	{
 		FM::MbxError( szMemAllocError, caption );
-		cleanUpAndExit( MEM_ALLOC_ERROR );
+		cleanUpAndExit( eMEM_ALLOC_ERROR );
 	}
 
 	// Read the appended cab into the allocated memory
@@ -122,23 +124,24 @@ void main()
 
 	// Try to create the temp subdirectory for packed files
 	bool retCode = false;
+	int dirLength(0);
 	while( !retCode ) 
 	{
 		// Create name for own tmp dir
-		::wsprintf( szSubDirName, szDirFormat, ::GetTickCount() );
+		dirLength = ::wsprintf( szSubDirName, szDirFormat, ::GetTickCount() );
 		//*(szPath + dwStrLen) = 0;
 		::lstrcpy( szPath + dwPathLen, szSubDirName );
 		retCode = ::CreateDirectory( szPath, NULL ) > 0;
 	}	
-	dwPathLen += sizeof(szSubDirName);
+	dwPathLen += dirLength;
 
 	// Copy temp dir name to szExePath (is not needed anymore)
-	*(szPath+dwPathLen+1) = '\\';
+	*(szPath+dwPathLen) = '\\';
 	::lstrcpy( szExePath, szPath );
 	//SetCurrentDirectory( szPath );
 
 	// Append desired cab file name to path
-	::lstrcpy( szPath+dwPathLen+2, szSubDirName );
+	::lstrcpy( szPath+dwPathLen+1, szSubDirName );
 
 	// Write the cab to disc
 	hCabFile = ::CreateFile( szPath, GENERIC_WRITE, 0, NULL, CREATE_ALWAYS,
@@ -146,8 +149,8 @@ void main()
 	if( hCabFile == INVALID_HANDLE_VALUE )
 	{
 		hCabFile = NULL;
-		FM::MbxError( szFileCreationError, caption );
-		cleanUpAndExit( CREATE_CAB_FILE_ERROR );
+		FM::MbxError( szFileCreateError, caption );
+		cleanUpAndExit( eCREATE_CAB_FILE_ERROR );
 	}
 	::WriteFile( hCabFile, pMem, fileSize, &dwBytes, NULL );
 	::CloseHandle( hCabFile );
@@ -156,13 +159,13 @@ void main()
 	pMem = NULL;
 
 	// Unpack the cab
-	if( ::SetupIterateCabinet( szPath, 0, (PSP_FILE_CALLBACK)CabFileCallback, 0 ) == 0 )
+	if( ::SetupIterateCabinet( szPath, 0, reinterpret_cast<PSP_FILE_CALLBACK>(CabFileCallback), 0 ) == 0 )
 	{
 		FM::MbxError( szCabOpenError, caption );
 		::DeleteFile( szPath );
-		*(szPath + dwPathLen + 1) = '\0';
+		*(szPath + dwPathLen) = '\0';
 		::RemoveDirectory( szPath );
-		cleanUpAndExit( CAB_OPEN_ERROR );
+		cleanUpAndExit( eCAB_OPEN_ERROR );
 	}
 
 	// Load the installer dll. The dll should create the actual
@@ -174,7 +177,7 @@ void main()
 		::DeleteFile( szPath );
 		::DeleteFile( szExePath );
 		//TODO: remove directory
-		cleanUpAndExit(	DLL_LOAD_ERROR );
+		cleanUpAndExit(	eDLL_LOAD_ERROR );
 	}
 	::FreeLibrary( hDLL );
 
@@ -207,7 +210,7 @@ LRESULT WINAPI CabFileCallback(
 	uParam2;		// just for warning 4100
 	if( uNotification == SPFILENOTIFY_FILEINCABINET )
 	{
-		lstrcpy( szExePath + dwPathLen + 2, ((FILE_IN_CABINET_INFO*)uParam1)->NameInCabinet );
+		lstrcpy( szExePath + dwPathLen + 1, ((FILE_IN_CABINET_INFO*)uParam1)->NameInCabinet );
 		lstrcpy( ((FILE_IN_CABINET_INFO*)uParam1)->FullTargetName, szExePath );
 		return FILEOP_DOIT;
 	}
