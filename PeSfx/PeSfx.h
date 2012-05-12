@@ -52,7 +52,7 @@ class PeSfxRun
 {
 public:
 	PeSfxRun(){}
-	~PeSfxRun(){}
+	virtual ~PeSfxRun(){}
 
 	const char* GetHelpString()
 	{

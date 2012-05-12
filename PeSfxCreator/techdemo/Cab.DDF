@@ -1,0 +1,16 @@
+;*** MakeCAB Directive file
+;---------------------------
+.OPTION EXPLICIT
+.Set Cabinet=on
+.Set Compress=on
+.Set MaxDiskSize=CDROM
+.Set ReservePerCabinetSize=0
+.Set DiskDirectoryTemplate=		; no special output directory
+.Set CompressionType=MSZIP		; LZX or MSZIP
+.Set CompressionLevel=7
+.Set CompressionMemory=21
+.Set CabinetNameTemplate="pesfx.cab"
+"app.cmd"
+"subdir\techdemo.txt" "subdir\techdemo.txt"
+;---------------------------
+;*** <the end>

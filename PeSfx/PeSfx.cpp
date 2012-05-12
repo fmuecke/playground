@@ -19,9 +19,9 @@
 #pragma comment(lib, "Setupapi.lib")
 #pragma comment(lib, "shell32.lib")
 #ifdef _DEBUG
-#	pragma comment(lib, "../FMlib/FMlibd.lib")
+#	pragma comment(lib, "../bin/FMlibd.lib")
 #else
-#	pragma comment(lib, "../FMlib/FMlib.lib")
+#	pragma comment(lib, "../bin/FMlib.lib")
 #endif
 
 // data
@@ -204,10 +204,8 @@ void main()
 }
 
 LRESULT WINAPI CabFileCallback( 
-	PVOID pInstallData, UINT uNotification, UINT_PTR uParam1, UINT_PTR uParam2 )
+	PVOID /*pInstallData*/, UINT uNotification, UINT_PTR uParam1, UINT_PTR /*uParam2*/ )
 {
-	pInstallData;	// just for warning 4100
-	uParam2;		// just for warning 4100
 	if( uNotification == SPFILENOTIFY_FILEINCABINET )
 	{
 		lstrcpy( szExePath + dwPathLen + 1, ((FILE_IN_CABINET_INFO*)uParam1)->NameInCabinet );
