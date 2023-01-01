@@ -1,0 +1,35 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 11
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DSgrabber", "DSgrabber.vcxproj", "{944F7ED3-CDFA-4C62-A3BB-D818D0D349ED}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DsShowGrabber", "src\DsShowGrabber\DsShowGrabber.vcxproj", "{750605B8-8E5D-4C1E-B8CC-1FBCA00CE479}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug Cam|Win32 = Debug Cam|Win32
+		Debug|Win32 = Debug|Win32
+		Release Cam|Win32 = Release Cam|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{750605B8-8E5D-4C1E-B8CC-1FBCA00CE479}.Debug Cam|Win32.ActiveCfg = Debug Cam|Win32
+		{750605B8-8E5D-4C1E-B8CC-1FBCA00CE479}.Debug Cam|Win32.Build.0 = Debug Cam|Win32
+		{750605B8-8E5D-4C1E-B8CC-1FBCA00CE479}.Debug|Win32.ActiveCfg = Debug|Win32
+		{750605B8-8E5D-4C1E-B8CC-1FBCA00CE479}.Debug|Win32.Build.0 = Debug|Win32
+		{750605B8-8E5D-4C1E-B8CC-1FBCA00CE479}.Release Cam|Win32.ActiveCfg = Release Cam|Win32
+		{750605B8-8E5D-4C1E-B8CC-1FBCA00CE479}.Release Cam|Win32.Build.0 = Release Cam|Win32
+		{750605B8-8E5D-4C1E-B8CC-1FBCA00CE479}.Release|Win32.ActiveCfg = Release|Win32
+		{750605B8-8E5D-4C1E-B8CC-1FBCA00CE479}.Release|Win32.Build.0 = Release|Win32
+		{944F7ED3-CDFA-4C62-A3BB-D818D0D349ED}.Debug Cam|Win32.ActiveCfg = Debug Cam|Win32
+		{944F7ED3-CDFA-4C62-A3BB-D818D0D349ED}.Debug Cam|Win32.Build.0 = Debug Cam|Win32
+		{944F7ED3-CDFA-4C62-A3BB-D818D0D349ED}.Debug|Win32.ActiveCfg = Debug|Win32
+		{944F7ED3-CDFA-4C62-A3BB-D818D0D349ED}.Debug|Win32.Build.0 = Debug|Win32
+		{944F7ED3-CDFA-4C62-A3BB-D818D0D349ED}.Release Cam|Win32.ActiveCfg = Release Cam|Win32
+		{944F7ED3-CDFA-4C62-A3BB-D818D0D349ED}.Release Cam|Win32.Build.0 = Release Cam|Win32
+		{944F7ED3-CDFA-4C62-A3BB-D818D0D349ED}.Release|Win32.ActiveCfg = Release|Win32
+		{944F7ED3-CDFA-4C62-A3BB-D818D0D349ED}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

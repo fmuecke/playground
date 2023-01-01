@@ -1,0 +1,18 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "SetHeaderGuards", "SetHeaderGuards.pyproj", "{67E0B7E1-5B48-46B6-A0F5-9E80D7FA195C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{67E0B7E1-5B48-46B6-A0F5-9E80D7FA195C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{67E0B7E1-5B48-46B6-A0F5-9E80D7FA195C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

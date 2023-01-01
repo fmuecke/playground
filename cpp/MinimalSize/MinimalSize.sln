@@ -1,0 +1,30 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MinimalSize", "MinimalSize.vcproj", "{15C1A7F2-A0DC-4A33-B75B-C8650434C15D}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MinimalSize_Native", "MinimalSize_Native.vcproj", "{239D37F6-0235-4A79-B248-16E2AC827CC8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Native Release|Win32 = Native Release|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{15C1A7F2-A0DC-4A33-B75B-C8650434C15D}.Debug|Win32.ActiveCfg = Debug|Win32
+		{15C1A7F2-A0DC-4A33-B75B-C8650434C15D}.Debug|Win32.Build.0 = Debug|Win32
+		{15C1A7F2-A0DC-4A33-B75B-C8650434C15D}.Native Release|Win32.ActiveCfg = Native Release|Win32
+		{15C1A7F2-A0DC-4A33-B75B-C8650434C15D}.Release|Win32.ActiveCfg = Release|Win32
+		{15C1A7F2-A0DC-4A33-B75B-C8650434C15D}.Release|Win32.Build.0 = Release|Win32
+		{239D37F6-0235-4A79-B248-16E2AC827CC8}.Debug|Win32.ActiveCfg = Debug|Win32
+		{239D37F6-0235-4A79-B248-16E2AC827CC8}.Debug|Win32.Build.0 = Debug|Win32
+		{239D37F6-0235-4A79-B248-16E2AC827CC8}.Native Release|Win32.ActiveCfg = Native Release|Win32
+		{239D37F6-0235-4A79-B248-16E2AC827CC8}.Native Release|Win32.Build.0 = Native Release|Win32
+		{239D37F6-0235-4A79-B248-16E2AC827CC8}.Release|Win32.ActiveCfg = Release|Win32
+		{239D37F6-0235-4A79-B248-16E2AC827CC8}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
