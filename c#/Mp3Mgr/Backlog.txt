@@ -1,0 +1,19 @@
+﻿
+Wie soll der Pfad aussehen?
+- "X:\SomeDir\mp3\<artist>\<artist> - <album>\*.mp3"
+- "X:\SomeDir\mp3\<artist>\<artist> - <album> (<year>)\*.mp3"
+- "X:\SomeDir\mp3\<artist>\<artist> - <album> (<year>, <special info>)\*.mp3"
+- ?erster Buchstabe pro Wort groß?
+
+Wie sollen die Dateien aussehen?
+- "<track> <title>.mp3"
+- ?alles Kleinbuchstaben?
+
+Wie soll die playlist aussehen?
+- "<album>.m3u"
+- "playlist.m3u"
+
+Welche sonstigen Kriterien?
+- Keine "_" in Pfad und Dateien
+- keine "Group-Tags" am Ende
+- Album darf keine Lücken in der Tracklist haben

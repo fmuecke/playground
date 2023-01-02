@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "StateMachineCpp", "StateMachineCpp.vcxproj", "{8598A73D-2261-4DC3-9ACF-403E249907EC}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "StateMachineCLI", "..\StateMachineCLI\StateMachineCLI.vcxproj", "{49A5B046-0A4F-48A0-9D57-4BA3BE76C8B0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8598A73D-2261-4DC3-9ACF-403E249907EC}.Debug|Win32.ActiveCfg = Debug|Win32
+		{8598A73D-2261-4DC3-9ACF-403E249907EC}.Debug|Win32.Build.0 = Debug|Win32
+		{8598A73D-2261-4DC3-9ACF-403E249907EC}.Release|Win32.ActiveCfg = Release|Win32
+		{8598A73D-2261-4DC3-9ACF-403E249907EC}.Release|Win32.Build.0 = Release|Win32
+		{49A5B046-0A4F-48A0-9D57-4BA3BE76C8B0}.Debug|Win32.ActiveCfg = Debug|Win32
+		{49A5B046-0A4F-48A0-9D57-4BA3BE76C8B0}.Debug|Win32.Build.0 = Debug|Win32
+		{49A5B046-0A4F-48A0-9D57-4BA3BE76C8B0}.Release|Win32.ActiveCfg = Release|Win32
+		{49A5B046-0A4F-48A0-9D57-4BA3BE76C8B0}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

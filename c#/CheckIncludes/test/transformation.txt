@@ -1,0 +1,6 @@
+#ifndef	XYZ --> <ifndef name="XYZ">
+#define XYZ --> <define>XYZ<define/>
+
+
+
+</ifndef>

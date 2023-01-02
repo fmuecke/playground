@@ -1,0 +1,82 @@
+#ifndef BASE__FIGHTCATEGORY_H_									--> <ifndef name="BASE__FIGHTCATEGORY_H_">
+#define BASE__FIGHTCATEGORY_H_									--> <define>BASE__FIGHTCATEGORY_H_</define>
+
+#include <QString>												--> <include name="QString"/>
+#include <QStringList>											--> <include name="QStringList"/>
+#include <vector>												--> <include name="vector"/>
+#include <string>												--> <include name="string"/>
+#include <boost/archive/xml_iarchive.hpp>						--> <include name="boost/archive/xml_iarchive.hpp"/>
+#include <boost/archive/xml_oarchive.hpp>						--> <include name="boost/archive/xml_oarchive.hpp"/>
+
+namespace Ipponboard											--> <namespace name="Ipponboard">
+{
+											
+class FightCategory												--> <class name="FightCategory">
+{
+public:															--> <public>
+	// Note: class uses std::string instead of QString for		--> <comment>Note: class uses std::string instead of QString for</comment>
+	// better serialization support								--> <comment>better serialization support</comment>
+	typedef std::vector<std::string> StringList;				?????????
+
+	FightCategory()												--> <method name="FightCategory"><params/>
+		: name(new_name.toStdString())							??????
+		, round_time_secs(0)
+		, golden_score_time_secs(0)
+		, weights()	
+	{}															--> <body></body></method>
+
+	explicit FightCategory(QString const& new_name)				--> <method name="FightCategory"><params><item>QString const& new_name</item></params>
+		: name(new_name.toStdString())							--> <init_list><item name="name">new_name.toStdString()</item>
+		, round_time_secs(0)									--> <item name="round_time_secs">0</item>
+		, golden_score_time_secs(0)								--> <item name="golden_score_time_secs">0</item>
+		, weights()												--> <item name="weights"></item>
+	{															--> <body>
+	}															--> </body></method>
+	
+	inline bool operator==(std::string const& n) const			--> <method name="operator==" returns="bool" modifier="inline,const"><params><item>std::string const& n</item></params>
+	{															--> <body>
+		return name == n;										--> return name == n;
+	}															--> </body></method>
+	inline bool operator==(QString const& n) const				--> <method name="operator==" returns="bool" modifier="inline,const"><params><item>QString const& n</item></params>
+	{															--> <body>
+		return name == n.toStdString();							--> return name == n.toStdString();
+	}															--> </body></method>
+
+	int GetRoundTime() const { return round_time_secs; }		--> <method name="GetRoundTime" returns="int" modifier="const"></params><body>return round_time_secs;</body></method>
+
+	QStringList GetWeightsList() const;							--> <method name="GetWeightsList" returns="QStringList" modifier="const"/>
+											--> </public>
+private:									--> <private>
+	friend class boost::serialization::access;					--> <class name="boost::serialization::access" modifier="friend"/>
+
+	template<class Archive>										--> <template><params>
+	void serialize(Archive& ar, const unsigned int version)
+	{
+		// Version history:
+		// 0: first initial shot
+		// 1: weights are now separated by semicolons (instead of commas)
+
+		ar& BOOST_SERIALIZATION_NVP(name);
+		ar& BOOST_SERIALIZATION_NVP(round_time_secs);
+		ar& BOOST_SERIALIZATION_NVP(golden_score_time_secs);
+		ar& BOOST_SERIALIZATION_NVP(weights);
+
+		if (version < 1)
+			std::replace(weights.begin(), weights.end(), ',', ';');
+	}
+
+	std::string name;
+	int round_time_secs;
+	int golden_score_time_secs;
+	std::string weights;
+											--> </private>
+};											--> </class>
+
+
+typedef std::vector<FightCategory> FightCategoryList;
+
+} // namespace Ipponboard		--> </namespace>
+
+BOOST_CLASS_VERSION(Ipponboard::FightCategory, 1);
+
+#endif  // BASE__FIGHTCATEGORY_H_
